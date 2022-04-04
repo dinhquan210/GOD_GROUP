@@ -8,6 +8,7 @@ import (
 )
 
 type UserHandler struct {
+	UserId string
 }
 
 func (u *UserHandler) HandleSignIn(c echo.Context) error {

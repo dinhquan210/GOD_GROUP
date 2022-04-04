@@ -26,5 +26,4 @@ func main() {
 	defer sql.Close()
 	e := echo.New()
 	e.Logger.Fatal(e.Start(":3000"))
-
 }
