@@ -1,0 +1,3 @@
+time="2022-04-04T13:16:09.012806+07:00" level=error msg="co loi xay ra" file=/Users/rnd/Documents/Code/backend-test/main.go line=26
+time="2022-04-04T13:25:59.92308+07:00" level=error msg="co loi xay ra" file=/Users/rnd/Documents/Code/backend-test/main.go line=28
+time="2022-04-04T13:36:49.250439+07:00" level=error msg="sql: no rows in result set" file=/Users/rnd/Documents/Code/backend-test/main.go line=32
