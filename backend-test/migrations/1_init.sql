@@ -20,7 +20,7 @@ CREATE TABLE "repos" (
     "stars_today" text,
     "build_by" text,
     "created_at" TIMESTAMPTZ NOT NULL,
-    "update_at" TIMESTAMPTZ NOT NULL
+    "updated_at" TIMESTAMPTZ NOT NULL
 );
 
 CREATE TABLE "bookmarks" (
@@ -28,7 +28,7 @@ CREATE TABLE "bookmarks" (
     "user_id" text,
     "repo_name" text,
     "created_at" TIMESTAMPTZ NOT NULL,
-    "update_at" TIMESTAMPTZ NOT NULL
+    "updated_at" TIMESTAMPTZ NOT NULL
 );
 
 ALTER TABLE "bookmarks" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
