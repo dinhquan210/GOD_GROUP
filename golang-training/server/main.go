@@ -45,7 +45,7 @@ func main() {
 	}
 
 	imageHandler := handler.ImageHandler{
-		// 	ImageRepo: image_repo_impl.NewImageRepo(sql),
+		ImageRepo: repo_impl.NewImageRepo(sql),
 	}
 
 	StructValidator := helper.NewStructValidator()

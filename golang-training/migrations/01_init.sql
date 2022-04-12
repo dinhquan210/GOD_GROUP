@@ -15,12 +15,10 @@ CREATE TABLE "images" (
     "urls_full" text,
     "urls_raw" text,
     "urls_regular" text,
-    "created" text,
     "updated_at" TIMESTAMPTZ NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL,
     "width" int,
-    "height" int,
-    "created_at" TIMESTAMPTZ NOT NULL
-    
+    "height" int
 );
 
 -- +migrate Down
