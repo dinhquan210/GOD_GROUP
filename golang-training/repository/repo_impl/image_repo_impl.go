@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"golang-training/banana"
 	"golang-training/db"
+	"golang-training/log"
 	"golang-training/model"
 	"golang-training/repository"
 	"time"
@@ -33,4 +34,31 @@ func (i *ImageRepoImpl) SaveImage(context context.Context, image model.Image) (m
 		return image, banana.GetRandomFail
 	}
 	return image, err
+}
+
+func (i *ImageRepoImpl) UpdateImageDescription(context context.Context, image model.Image) (model.Image, error) {
+	sqlStatement := `
+		UPDATE images
+		SET 
+			description =:description,
+			updated_at 	  = COALESCE (:updated_at, updated_at)
+		WHERE id    = :id
+	`
+	image.UpdatedAt = time.Now()
+
+	_, err := i.sql.Db.NamedExecContext(context, sqlStatement, image)
+	if err != nil {
+		log.Error(err.Error())
+		return image, err
+	}
+	return image, nil
+}
+
+func (i *ImageRepoImpl) SelectImage(context context.Context, arr []model.Image) ([]model.Image, error) {
+	err := i.sql.Db.SelectContext(context, &arr, "SELECT * FROM images;")
+	if err != nil {
+		log.Error(err.Error())
+		return arr, err
+	}
+	return arr, nil
 }

@@ -25,4 +25,7 @@ func (api *API) SetupRouter() {
 	user.PUT("/profile/update", api.UserHandler.UpdateProfile)
 	//image
 	api.Echo.GET("/random-image", api.ImageHandler.RandomImage)
+	api.Echo.PUT("/update-image", api.ImageHandler.UpdateImage) // by Id
+	api.Echo.PUT("/show-image", api.ImageHandler.ShowImage)
+	// api.Echo.PUT("/delete-image", api.ImageHandler.DelImage) // by Id
 }

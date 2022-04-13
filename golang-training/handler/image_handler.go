@@ -3,6 +3,7 @@ package handler
 import (
 	"golang-training/log"
 	"golang-training/model"
+	"golang-training/model/req"
 	"golang-training/repository"
 	"golang-training/utils/unsplashutils"
 	"net/http"
@@ -48,3 +49,37 @@ func (i *ImageHandler) RandomImage(c echo.Context) error {
 	})
 }
 
+func (i *ImageHandler) UpdateImage(c echo.Context) error {
+	req := req.ReqImageUpdate{}
+	if err := c.Bind(&req); err != nil {
+		return err
+	}
+
+	image := model.Image{
+		ImageID:     req.Id,
+		Description: req.Description,
+	}
+	image, err := i.ImageRepo.UpdateImageDescription(c.Request().Context(), image)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, model.Response{
+			StatusCode: http.StatusUnprocessableEntity,
+			Message:    err.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusCreated, model.Response{
+		StatusCode: http.StatusCreated,
+		Message:    "Update thong tin anh thanh cong",
+		Data:       image,
+	})
+}
+
+func (i *ImageHandler) ShowImage(c echo.Context) error {
+
+	arr, _ := i.ImageRepo.SelectImage(c.Request().Context(), []model.Image{})
+	return c.JSON(http.StatusOK, model.Response{
+		StatusCode: http.StatusOK,
+		Message:    "Xử lý thành công",
+		Data:       arr,
+	})
+}
